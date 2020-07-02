@@ -20,5 +20,19 @@ print("안녕하세요! 저는 \(age)살입니다.")
 print("안녕하세요! 저는 \(age+5)살입니다.")
 
 ``` 
-"안녕하세요! 저는 10살입니다."
+"안녕하세요! 저는 10살입니다."   
 "안녕하세요! 저는 15살입니다."
+
+```swift
+class Person{
+  var name: String ="yagom"
+  var age: Int = 10
+}
+
+let yagom: Person = Person()
+print(yagom)
+print("\n#################")
+dump(yagom) // 더 자세하게 찍힘
+```
+
+
