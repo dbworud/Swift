@@ -83,6 +83,7 @@ greeting("Hannah", "Eric") // Hello Hannah! I'm Eric
 
 ### 전달인자 
 함수 호출 시, 매개변수의 역할을 좀 더 명확하게 하거나 함수 사용자의 입장에서 표현하고자 할 때  
+
 **func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) {
   함수 구현부
   return
@@ -116,12 +117,21 @@ print(sayHelloToFriends(me: "Jaekyung") // Hello []! I'm Jaekyung.
 ### 하나의 데이터 타입으로서 함수
 swift의 함수는 일급객체이므로 변수, 상수 등에 저장 가능하며 매개변수를 통해 전달 가능
 ※변환타입을 생략할 수 없음  
+
 **(매개변수1타입, 매개변수2타입 ...) -> 반환타입**
 
 ```swift
-var someFunction: (String, String) -> Void = greeting(to:from:)
+var someFunction: (String, String) -> Void = greeting(to:from:) // greeting이란 함수를 someFunction이라는 var에 저장
 someFunction("Hannah", "Jaekyung") // Hello Hannah! I'm Jaekyung
 
+someFunction = sayHelloToFriends(me: friends:) // error. friends가 가변매개변수 이기 때문에 String 타입과 맞지 않음
+
+func runAnother(function: (String, String) -> Void) {
+  function("jenny", "mike")
+}
+
+runAnother(function: greeting(friend:me:)) // Hello jenny! I'm mike
+runAnother(function: someFunction) // Hello jenny! I'm mike
 
 ```
 
