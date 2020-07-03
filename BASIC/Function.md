@@ -116,7 +116,7 @@ print(sayHelloToFriends(me: "Jaekyung") // Hello []! I'm Jaekyung.
 ### 하나의 데이터 타입으로서 함수
 swift의 함수는 일급객체이므로 변수, 상수 등에 저장 가능하며 매개변수를 통해 전달 가능
 ※변환타입을 생략할 수 없음
-\*\*(매개변수1타입, 매개변수2타입 ...) -> 반환타입\*\*
+**(매개변수1타입, 매개변수2타입 ...) -> 반환타입**
 
 ```swift
 var someFunction: (String, String) -> Void = greeting(to:from:)
