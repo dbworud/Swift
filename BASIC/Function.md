@@ -1,9 +1,9 @@
 
 ### 반환값이 있는 함수 선언
-func 함수이름 (매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> 반환타입 {
+**func 함수이름 (매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> 반환타입 {
   함수 구현부
   return 반환값
-}
+}**
 
 ```swift
 func sum(a: Int, b: Int) -> Int {
@@ -12,10 +12,10 @@ func sum(a: Int, b: Int) -> Int {
 ```
 
 ### 반환값이 없는 함수 선언
-func 함수이름 (매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> Void {
+**func 함수이름 (매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 ...) -> Void {
   함수 구현부
   return 
-}
+}**
 
 ```swift
 func printMyName(name: String) -> Void {
@@ -40,10 +40,10 @@ func maximumIntegerValue() -> Int{
 ```
 
 ### 매개변수와 반환값이 없는 함수 선언
-func 함수이름() -> Void {
+**func 함수이름() -> Void {
   함수 구현부
   return
-}
+}**
 
 func 함수이름() {
   함수 구현부
@@ -66,10 +66,10 @@ bye() // bye
 ```
 
 ### default값을 갖는 매개변수는 가장 뒤에 위치
-func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 = 매개변수 기본값...) -> 반환타입 {
+**func 함수이름(매개변수1이름: 매개변수1타입, 매개변수2이름: 매개변수2타입 = 매개변수 기본값...) -> 반환타입 {
   함수 구현부
   return 반환값
-}
+}**
 
 ```swift
 func greeting(friend: String, me: String = "Jaekyung") {
@@ -83,10 +83,10 @@ greeting("Hannah", "Eric") // Hello Hannah! I'm Eric
 
 ### 전달인자 
 함수 호출 시, 매개변수의 역할을 좀 더 명확하게 하거나 함수 사용자의 입장에서 표현하고자 할 때
-func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) {
+**func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) {
   함수 구현부
   return
-}
+}**
 
 ```swift
 func greeting(to friend: String, from me: String){
@@ -99,10 +99,10 @@ greeting(to: "Hannah", from: "Jaekyung")
 전달 받을 값의 개수를 알기 어려울 때.
 함수 당 하나만 가질 수 있음
 
-func 함수이름(매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2 타입...) -> 반환타입 {
+**func 함수이름(매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2 타입...) -> 반환타입 {
   함수 구현부
   return
-}
+}**
 
 ```swift
 func sayHelloToFriends(me: String, friends: String...) -> Strin g {
@@ -115,7 +115,7 @@ print(sayHelloToFriends(me: "Jaekyung") // Hello []! I'm Jaekyung.
 
 ### 하나의 데이터 타입으로서 함수
 swift의 함수는 일급객체이므로 변수, 상수 등에 저장 가능하며 매개변수를 통해 전달 가능
-※변환타입을 생략할 수 없음
+※변환타입을 생략할 수 없음  
 **(매개변수1타입, 매개변수2타입 ...) -> 반환타입**
 
 ```swift
