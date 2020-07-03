@@ -39,3 +39,29 @@ immutableReference.mutableProperty = 200 // sturct와 달리, let 상수도 변�
 Sample.typeProperty = 300
 Sample.typeMethod() 
 ```
+
+```swift
+class Student {
+  var name: String = "unknown"
+  var 'class': String = "swift" // Class와 중복되면 안되므로
+  
+  fun selfIntroduce() {
+    print("저는 \(self.class)반 \(name)입니다")
+  }
+  
+  static fun selfIntroduce() {
+    print("학생 타입입니다")
+  }
+}
+
+Student.selfIntroduce() // 학생타입입니다
+
+var yagom: Student = Student()
+yagom.name = "yagom"
+yagom.class = "스위프트"
+yagom.selfIntroduce() // 저는 스위프트반 yagom입니다
+
+let jina: Student = Student() // 불변이므로 프로터피 값 변경 불가
+jina.name = "jina"
+jina.selfIntroduce() // 저는 swift반 jina입니다 
+```
