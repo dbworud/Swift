@@ -126,8 +126,9 @@ var characters: [Character] = []
 let immutableArray = [1,2,3] // can't change
 immutableArray.append(4) // error
 immutableArray.removeAll() //error
+```
 
-
+```swift
 // Dictionary
 // key는 string, value가 any인 empty dictionary 생성
 var anyDictionary : Dictionary<String, Any> = [String: Any]() 
@@ -145,9 +146,35 @@ anyDictionary  // [:]
 
 let emptyDictionary: [String: String] = [:] 
 let initializedDictionary: [String: String] = ["name": "Jaekyung", "gender": "female"] // 값 변경 불가
+```
 
-// Set
+```swift
+// empty Set 생성, 축약형 없음
+var intergerSet: Set<Int> = Set<Int>()
+integerSet.insert(1)
+integerSet.insert(100)
+integerSet.insert(99)
+integerSet.insert(99) // 중복X
 
+integerSet // {100, 99, 1}
+integerSet.contains(1) // true
+integerSet.contains(2) // false
+
+integerSet.remove(100) // 100
+integerSet.removeFirst() // 99
+
+integerSet.count // 1
+
+let setA: Set<Int> = [1, 2, 3, 4, 5] 
+let setB: Set<Int> = [3, 4, 5, 6, 7]
+
+let union: Set<Int> = setA.union(setB)  // {2,4,5,6,7,3,1} 정렬X
+
+let sortedUnion: [Int] = union.sorted()  // [1,2,3,4,5,6,7] sorted
+
+let intersetion: Set<Int> = setA.intersection(setB) // {5,3,4} 차집합
+
+let subtraction: Set<Int> = setA.subtracting(setB) // {2,1}
 
 ```
 
