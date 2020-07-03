@@ -68,10 +68,3 @@ let jina: Student = Student() // 불변이므로 프로터피 값 변경 불가
 jina.selfIntroduce() // 저는 swift반 unknonw입니다 
 
 ``` 
-
-
-
-
-
-
-
