@@ -1,6 +1,6 @@
 ## NAMING
 * 기본적으로 Camel Case 
-function, method, variable, contant -> Lower Camel Case ex.someVariableName
+function, method, variable, contant -> Lower Camel Case ex.someVariableName  
 type(class, struct, enum, extension...) -> Upper Camel Case ex. Person, Point, Week 
 
 * 대소문자 구분
