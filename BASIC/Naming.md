@@ -94,7 +94,7 @@ var someAnyObject : AnyObject = SomeClass()
 someObject = nil // error
 someAnyObject = nil // error 
 ```
-### Collection type
+## Collection type
 ```swift
 /*
 Array: 순서가 있는 list collection. index가 있음
@@ -117,6 +117,37 @@ integers.removeAll() // []
 
 integers.count // 0
 integers[0] // empty, so error 
+
+// Array 생성의 다양한 방법
+var doubles: Array<Double> = [Double]() // Array<Double>() 과 동일
+var strings : [String] = [String]()
+var characters: [Character] = [] 
+
+let immutableArray = [1,2,3] // can't change
+immutableArray.append(4) // error
+immutableArray.removeAll() //error
+
+
+// Dictionary
+// key는 string, value가 any인 empty dictionary 생성
+var anyDictionary : Dictionary<String, Any> = [String: Any]() 
+anyDictionary["firstKey"] = "value"
+anyDictionary["secondKey"] = 100
+
+anyDictionary // ["firstKey" : "value", "secondKey" : 100]
+
+anyDictionary["firstKey"] = "dictionary" //  ["firstKey" : "dictionary", "secondKey" : 100]
+
+anyDictionary.removeValue(forKey: "secondKey") // remove method1
+anyDictionary["firstKey"] = nil // remove method2
+
+anyDictionary  // [:]
+
+let emptyDictionary: [String: String] = [:] 
+let initializedDictionary: [String: String] = ["name": "Jaekyung", "gender": "female"] // 값 변경 불가
+
+// Set
+
 
 ```
 
