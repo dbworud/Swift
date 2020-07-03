@@ -28,10 +28,10 @@ func printMyName(name: String) {
 ```
 
 ### 매개변수가 없는 함수 선언
-func 함수이름() -> 반환타입 {
+**func 함수이름() -> 반환타입 {
   함수 구현부
   return 반환값
-}
+}**
 
 ```swift
 func maximumIntegerValue() -> Int{
@@ -45,10 +45,10 @@ func maximumIntegerValue() -> Int{
   return
 }**
 
-func 함수이름() {
+**func 함수이름() {
   함수 구현부
   return
-}
+}**
 
 ```swift
 func hello() -> Void {print("hello")}
@@ -82,7 +82,7 @@ greeting("Hannah", "Eric") // Hello Hannah! I'm Eric
 ```
 
 ### 전달인자 
-함수 호출 시, 매개변수의 역할을 좀 더 명확하게 하거나 함수 사용자의 입장에서 표현하고자 할 때
+함수 호출 시, 매개변수의 역할을 좀 더 명확하게 하거나 함수 사용자의 입장에서 표현하고자 할 때  
 **func 함수이름(전달인자 레이블 매개변수1이름: 매개변수1타입, 전달인자 레이블 매개변수2이름: 매개변수2타입...) {
   함수 구현부
   return
