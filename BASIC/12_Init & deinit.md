@@ -150,6 +150,6 @@ var donald: PersonE = PersonE(name: "donald", child: "jenny")
 donald?.pet = happy
 donald = nil // donald를 메모리에서 해제
 
-// donal가 jenny에게 happy을 인도합니다
+// donald가 jenny에게 happy을 인도합니다
 
 ```
