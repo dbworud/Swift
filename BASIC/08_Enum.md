@@ -137,7 +137,7 @@ print(someStructInstance.someProperty) // "Property"
 ```
 
 ```swift
-struct SomeClass {
+class SomeClass {
   var someProperty: String = "Property"
 }
 
