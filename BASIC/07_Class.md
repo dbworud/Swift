@@ -45,11 +45,11 @@ class Student {
   var name: String = "unknown"
   var 'class': String = "swift" // Class와 중복되면 안되므로
   
-  fun selfIntroduce() {
+  func selfIntroduce() {
     print("저는 \(self.class)반 \(name)입니다")
   }
   
-  static fun selfIntroduce() {
+  static func selfIntroduce() {
     print("학생 타입입니다")
   }
 }
