@@ -108,10 +108,10 @@ optionalCasted = jenny as? UniversityStudent // nil
 ```swift
 var forcedCasted: Student
 
-forcedCasted = mike as? UniversityStudent // 원래 대학생으로 할당되었기 때문에 가능
-forcedCasted = jina as? UniversityStudent // runtime error
-forcedCasted = jina as? Person // runtime error 
-forcedCasted = jenny as? UniversityStudent // runtime error
+forcedCasted = mike as! UniversityStudent // 원래 대학생으로 할당되었기 때문에 가능
+forcedCasted = jina as! UniversityStudent // runtime error
+forcedCasted = jina as! Person // runtime error 
+forcedCasted = jenny as! UniversityStudent // runtime error
 
 // 활용
 func doSomethingWithSwitch(someone: Person) {
