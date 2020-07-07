@@ -53,13 +53,14 @@ print(3.multiply(by: 2)) // 6
 ## 이니셜라이저 추가
 ```swift
 extension String {
-  init(intTypeNumber: Int) {
-    self = "\(intTypeNumber)"
+  init(int: Int) {
+    self = "\(int)"
   }
-  init(doubleTypeNumber: Int) {
-    self = "\(doubleTypeNumber)"
+  init(double: Int) {
+    self = "\(double)"
   }
 }
 
-let stringFromInt: String = String(intTypeNumber: 100) // "100"
+let stringFromInt: String = String(int: 100) // "100"
+print(stringFromInt)
 ```
