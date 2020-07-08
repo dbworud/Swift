@@ -6,7 +6,7 @@
 ## Modules & Source Files
 접근수준은 modules 와 source files 컨셉에 기반
 
-**module** : single unit of code distribution that can be imported by another module with 'import' keyword. ex. framework, application
+**module** : single unit of code distribution that can be imported by another module with 'import' keyword. ex. framework, application  
 **source file** : single Swift source code file within a module.
 
 ## Five Access Levels
