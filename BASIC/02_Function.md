@@ -135,3 +135,18 @@ runAnother(function: someFunction) // Hello jenny! I'm mike
 
 ```
 
+### 함수에서 argument
+```swift
+func greet(name: String, day: String) {
+  print("Hello, \(name). It's \(day)")
+}
+
+func greet(name: String, _day: String) {
+  print("Hello, \(name). It's \(day)")
+}
+
+greet(name: "John", day: "Wed")
+greet(name: "John", "Wed")
+
+함수호출에서 차이! 전자는 argument(인자)의 label이 붙어야 함!
+```
