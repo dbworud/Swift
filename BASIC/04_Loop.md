@@ -4,6 +4,8 @@
 **for item in list {
   code
 }** 
+* break,continue 사용O
+* return 사용X
 
 ```swift
 var integers = [1, 2, 3]
@@ -16,6 +18,43 @@ for integer in integers {
 for (name, age) in people {
   print("\(name): \(age)")
 } // yagom: 10, eric: 15, mike: 12
+```
+
+##forEach
+* for-in과 동일하게 element 출력
+* break,continue 사용X
+* return 사용O
+
+```swift
+let array = [1,2,3,4,5]
+for num in array { 
+  if num == 2 {
+    break
+  }
+  print(num)
+} // 1
+
+for num in array { 
+  if num == 2 {
+    continue
+  }
+  print(num)
+} // 1,3,4,5
+
+for num in array { 
+  if num == 2 {
+    return
+  }
+  print(num)
+} // 오류
+
+array.forEach {
+ if $0 == 2 {
+    return
+  }
+  print($0)
+} // 1,3,4,5
+
 ```
 
 ## while 구문
