@@ -57,7 +57,10 @@ provider.sink(receiveCompletion: {_ in
   print(data)
 })
 ```
+* 데이터 스트림 발행
+* sink로 연결될 때 구독(subscribe)이 시작
 
+<img width="591" alt="image" src="https://user-images.githubusercontent.com/59492694/87910000-3c19ea00-caa4-11ea-9cc5-ac409612170a.png">
 
 
 
