@@ -18,9 +18,9 @@ formatter.numberStyle = .ordinal
 ```
 
 ## Operator 종류
-**Mapping Element** : 주로 데이터를 다른 데이터 타입으로 변형 ex. scan, setFailureType, map, flatMap
-**Filtering Element** : 조건에 맞느 데이터만 허용 ex. compactMap, replaceEmpty, filter, replaceError, removeDuplicates
-**Reduce Element** : 데이터 스트림을 모아 출력 ex. collect, reduce, tryReduce, ignoreOutput
-**Mathematic operations on elements** : 숫자와 관련된 스트림 제어 ex. count, max, min
-**Sequence Elements** : 데이터 시퀀스를 변형할 때 사용 ex. prepend, firstWhere, tryFirstWhere, first, lastWhere, tryLastWhere, last, dropWhile
+**Mapping Element** : 주로 데이터를 다른 데이터 타입으로 변형 ex. scan, setFailureType, map, flatMap. 
+**Filtering Element** : 조건에 맞느 데이터만 허용 ex. compactMap, replaceEmpty, filter, replaceError, removeDuplicates. 
+**Reduce Element** : 데이터 스트림을 모아 출력 ex. collect, reduce, tryReduce, ignoreOutput. 
+**Mathematic operations on elements** : 숫자와 관련된 스트림 제어 ex. count, max, min. 
+**Sequence Elements** : 데이터 시퀀스를 변형할 때 사용 ex. prepend, firstWhere, tryFirstWhere, first, lastWhere, tryLastWhere, last, dropWhile. 
 
