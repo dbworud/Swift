@@ -20,7 +20,7 @@ for (name, age) in people {
 } // yagom: 10, eric: 15, mike: 12
 ```
 
-##forEach
+## forEach
 * for-in과 동일하게 element 출력
 * break,continue 사용X
 * return 사용O
