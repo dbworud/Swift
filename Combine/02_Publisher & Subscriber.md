@@ -14,6 +14,22 @@ PropertyWrapper를 통해 사용할 수 있음
 @Publised var userName: String = ""
 ```
 
+### 3. Subject
+* Publisher의 일종 
+* **파이프라인 외부에서도 내부로 데이터를 보낼 수 있음** 때문에, 기존 combine프로토콜이 아닌 콜백클로저로 구현되어있더라도
+subject를 이용하면 쉽게 리팩토링할 수 있음
+* 또한, 다른 Framework와 쉽게 연동하여 사용할 수 있음
+
+#### PassthroughSubject
+상태값을 가지지않는 subject로서, 콜백클로저로 구현되어있더라도 쉽게 리팩토링 가능
+```swift
+
+```
+#### CurrentValueSubject
+상태값을 가지는 subject로서, 주로 UI상태값에 따라 데이터를 발행할 때 유용
+
+
+
 ## Subscriber 종류
 * Subscriber를 상속받아 직접 구현하기
 * sink를 이용하여 결과값 받기
