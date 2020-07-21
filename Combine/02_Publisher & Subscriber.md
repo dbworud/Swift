@@ -46,7 +46,27 @@ subject.send(completion: .finished)
 
 #### CurrentValueSubject
 상태값을 가지는 subject로서, 주로 UI상태값에 따라 데이터를 발행할 때 유용
+맨처음 초기값을 지정
 
+```swift
+let currentStatus = CurrentValueSubject<Bool, Error>(true)
+
+currentStatus.sink(receiveCompletion: { completion in
+  switch completion {
+  case .failure: 
+    print("Error")
+  case .finished:
+    print("데이터 발행이 완료되었습니다")
+   }
+  }, receiveValue: { value in
+    print(value) 
+})
+
+// 데이터를 외부에서 발행할 수 있다
+print("초기값은 \(currentStatus.value)입니다.")
+currentStatus.value(false) // false값을 주입
+currentStatus.value = true
+```
 
 
 ## Subscriber 종류
