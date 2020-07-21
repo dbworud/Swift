@@ -79,4 +79,4 @@ let cancellable = URLSession.shared.dataTaskPublisher(for: url)
 ```
 
 ## eraseToAnyPublisher ?
-Publisher
+Publisher가 아닌 AnyPublisher
