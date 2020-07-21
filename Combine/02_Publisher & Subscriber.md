@@ -106,3 +106,28 @@ let subscriber = CustomSubscriber()
 publisher.subscribe(subscriber)
 
 ```
+
+### Cancellable ?
+데이터 발행 중 cancel()메서드가 호출되었을 때 모든 파이프라인이 멈추고 끝나게 된다   
+만약 사용자가 데이터 로딩을 기다리던 도중 뒤로 간다거나 취소를 하는 경우처럼 스트림을 중단해야할 때 사용    
+Subscriber는 Cancellable을 리턴값으로 가진다   
+
+```swift
+let externalProvider = PassthroughSubject<String, Error>()
+
+let anyCancelable = externalProvider.sink{ steam in
+    print("전달받은 데이터 \(steam)")
+}
+
+externalProvider.send("A")
+externalProvider.send("B")
+externalProvider.send("C")
+anyCancelable.cancel() // 데이터 발행을 중단
+externalProvider.send("D")
+
+// 결과
+전달받은 데이터 A
+전달받은 데이터 B
+전달받은 데이터 C
+```
+
