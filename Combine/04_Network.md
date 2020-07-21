@@ -67,7 +67,7 @@ let url = URL(string: https://jsonplaceholder.typicode.com/posts)
 
 // dataTaskPublisher은 URLSession에서 제공하는 Publisher이다.
 let cancellable = URLSession.shared.dataTaskPublisher(for: url)
-  .map {$0.title}
+  .map {$0.data}
   .decode(type: [Post].self, decoder: JSONDecoder()) // 전달받은 데이터를 JSON형식으로 decode
   .replaceError(with: []) // 에러가 발생할 경우 에러를 전달하지 않음
   .eraseToAnyPublisher()
