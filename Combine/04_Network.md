@@ -79,4 +79,46 @@ let cancellable = URLSession.shared.dataTaskPublisher(for: url)
 ```
 
 ## eraseToAnyPublisher ?
-Publisher가 아닌 AnyPublisher
+Publisher가 아닌 AnyPublisher형태로 리턴   
+지금까지의 데이터 스트림이 어떠했던 최종적인 형태의 Publisher를 리턴
+
+```swift
+let x = PassthroughSubject<String, Never>()
+  .flatMap { name in
+    return Future<String, Error> { promise in
+      promise(.success(""))
+      }.catch {_ in
+        Just("No User Found")
+      }.map { result in 
+        return "\(result) foo"
+      }
+     }
+    }
+  }
+
+```
+flatMap에 오버레이터를 사용하고 별도의 에러처리를 했기 때문에 Publishers.FlatMap<Publishers.Map<Publishers.Catch<Future<String, Error>, Just<String>>, String>, PassthroughSubject<String, Never>> 다음과 같은 형식으로 데이터를 받음
+-> 타입이 너무 길고 개발자 입장에서 파이브라인이 어떤 흐름으로 연결되는지 외부에 노출됨
+
+```swift
+let x = PassthroughSubject<String, Never>()
+///생략
+}.eraseToAnyPublisher()
+```
+따라서, x는 AnyPublisher<String, Never>인 타입이 된다.
+
+
+## ErrorHandling
+.replaceError(with:[]) // 에러가 발생하면 에러스트림이 전달되지 않도록 처리
+
+조금 더 상세한 에러처리를 위해
+```swift
+let cancellable = URLSession.shared.dataTaskPublisher(for: url)
+  .tryMap{ data, response -> Data in // 성공해야만 데이터를 아래로 흘려보냄
+  guard let httpResponse = response as? HTTPURLResponse, httpresponse.codeStatuse == 200 else {
+    throw NetworkErrorType.invalidServiceResponse // 200이 아니면 호출
+  }
+  return data 
+}
+
+```
