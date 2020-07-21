@@ -77,3 +77,6 @@ let cancellable = URLSession.shared.dataTaskPublisher(for: url)
 
 // 이후, cancellable.cancel()을 호출하여 스트림을 중단할 수 있음
 ```
+
+## eraseToAnyPublisher ?
+Publisher
