@@ -72,7 +72,7 @@ let cancellable = URLSession.shared.dataTaskPublisher(for: url)
   .replaceError(with: []) // 에러가 발생할 경우 에러를 전달하지 않음
   .eraseToAnyPublisher()
   .sink (receiveValue: {posts in 
-    print("전달받으 데이터는 총 \(posts.count)개 입니다")
+    print("전달받은 데이터는 총 \(posts.count)개 입니다")
   })
 
 // 이후, cancellable.cancel()을 호출하여 스트림을 중단할 수 있음
