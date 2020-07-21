@@ -23,8 +23,27 @@ subject를 이용하면 쉽게 리팩토링할 수 있음
 #### PassthroughSubject
 상태값을 가지지않는 subject로서, 콜백클로저로 구현되어있더라도 쉽게 리팩토링 가능
 ```swift
+let subject = PassthroughSubject<String, Error>()
 
+subject.sink(receiveCompletion: { completion in
+// 에러가 발생하 경우에도 receiveCompletion이 호출됨
+  switch completion {
+    case .failure: 
+      print("Error가 발생하였습니다")
+    case .finished:
+      print("데이터 발행이 끝났습니다")
+    }
+  }, receiveValue: {value in
+    print(value)  
+  })
+  
+// 데이터를 외부에서 발행할 수 있다
+subject.send("A")
+subject.send("B")
+// 데이터 발행을 종료한다
+subject.send(completion: .finished)
 ```
+
 #### CurrentValueSubject
 상태값을 가지는 subject로서, 주로 UI상태값에 따라 데이터를 발행할 때 유용
 
