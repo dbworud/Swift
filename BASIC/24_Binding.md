@@ -167,6 +167,7 @@ print(userInfo.age) // 40, 값 호출과 동시에 Get에서 데이터를 가져
 
 **<propertyWrapper자체에 접근하기>**   
 $사인을 통해 propertyWrapper에 직접 접근하여 get, set을 거치지않고 값을 가져올 수 있다
+구조체가 아닌 클래스라면 (_) 언더스코어 사용
 
 ```swift
 @propertyWrapper
@@ -201,6 +202,30 @@ print(userInfo.age) // 실제값은 20이지만 wrappedValue를 거쳐 40
 print(userInfo.$age.value) // 실제값 20 출력
 
 ```
+
+**<Boiler Plate가 많이 들어가는 경우 유용>**  
+
+```swift
+@propertyWrapper
+struct UserDefault<T> {
+  var key: String
+  var initialValue: T
+  var wrappedValue: T {
+    set { UserDefaults.standard.set(newValue, forKey: key) }
+    get { UserDefaults.standard.object(forKey: key) as? T ?? initialValue }
+  }
+}
+
+struct UserInfo {
+  @UserDefault(key: "userAge", initialValue: 0)
+  static var userAge: Int
+}
+
+
+```
+
+
+
 
 
 
