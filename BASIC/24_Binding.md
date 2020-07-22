@@ -135,6 +135,8 @@ struct ContentButtonView: View {
 ### @Property Wrapper ?
 Annotation을 활용하여 감싸져(Wrapping)있는 값을 사용하는 개념
 
+**<랩핑된 wrapped value에 접근하기>**
+
 ```swift
 @propertyWrapper
 class WhateverDouble {
@@ -163,8 +165,42 @@ print(userInfo.age) // 40, 값 호출과 동시에 Get에서 데이터를 가져
 ```
 데이터는 propertyWrapper를 거치게 되며 엄밀히 말하는 age는 Int형이 아닌 PropertyWrapper의 wrappedValue로 감싸져있다.
 
+**<propertyWrapper자체에 접근하기>**
+$사인을 통해 propertyWrapper에 직접 접근하여 get, set을 거치지않고 값을 가져올 수 있다
 
+```swift
+@propertyWrapper
+struct WhateverDouble {
+  var value = 20
+  var wrappedValue: Int {
+    get { return value * 2 }
+    set { value = newValue }
+  }
+  
+  // 프로퍼티래퍼 자체를 변경하는 getter, setter
+  // self는 WhateverDouble 자신
+  var projectedValue: Self {
+    get { return self }
+    set { self = newValue }
+  }
+}
 
+struct UserInfo {
+  @WhateverDouble var age: Int
+}
+
+var userInfo = UserInfo()
+userInfo.age = 10 
+print(userInfo.age) // 실제값은 10이지만 wrappedValue를 거쳐 결과 20
+
+// propertyWrapper를 직접 변경
+// $사인을 통해 프로퍼티 값 자체에 접근할 수 있음
+userInfo.$age = WhateverDouble()
+
+print(userInfo.age) // 실제값은 20이지만 wrappedValue를 거쳐 40
+print(userInfo.$age.value) // 실제값 20 출력
+
+```
 
 
 
