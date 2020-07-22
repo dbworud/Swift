@@ -132,7 +132,7 @@ struct ContentButtonView: View {
 
 ```
 
-### Property Wrapper ?
+### @Property Wrapper ?
 Annotation을 활용하여 감싸져(Wrapping)있는 값을 사용하는 개념
 
 ```swift
