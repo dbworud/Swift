@@ -132,4 +132,44 @@ struct ContentButtonView: View {
 
 ```
 
-### Property Wrapper
+### Property Wrapper ?
+Annotation을 활용하여 감싸져(Wrapping)있는 값을 사용하는 개념
+
+```swift
+@propertyWrapper
+class WhateverDouble {
+  private(set) var value: Int = 0 // propertyWrapper에서 WrappedValue는 반드시 구현해야 한다 
+  
+  // Whaterver의 get과 set을 처리
+  var wrappedValue: Int {
+    get { value }
+    set { value = newValue * 2 }
+  }
+}
+
+struct UserInfo {
+  @WhateverDouble
+  var age: Int
+}
+
+extension UserInfo {
+  init(age: Int){
+    self.age = age // age 할당과 동시에 WhateverDouble의 set에서 처리
+  }  
+}
+
+var userInfo = UserInfo(age: 20)
+print(userInfo.age) // 40, 값 호출과 동시에 Get에서 데이터를 가져옴
+```
+데이터는 propertyWrapper를 거치게 되며 엄밀히 말하는 age는 Int형이 아닌 PropertyWrapper의 wrappedValue로 감싸져있다.
+
+
+
+
+
+
+
+
+
+
+
