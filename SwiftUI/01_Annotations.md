@@ -30,11 +30,63 @@ struct Picker: View {
     }.pickerStyle(SegmentedStyle())
   }
 }
-
 ```
 
  
 ## @ObservedObject ? 
+### @State보다 더 복잡한 상황에서 값의 변화를 인지하여 view에 업데이트
 
+* @State는 특정 view에서만 사용했다면, @ObservedObject는 더 복잡한 프로퍼티(여러 프로퍼티나 메소드가 있거나, 여러 view에서 공유할 수 있는 커스텀 타입이 있는 경우)대신 사용. 
+* string이나 integer같은 간단하 프로퍼티 대신 외부참조타입(external reference type)을 사용. 
+* @ObservedObject와 함께 사용하는 타입은 ObservableObject 프로토콜을 따라야함. 
+* @ObservedObject의 값이 변했음을 뷰에 알리기 위해 @Published라는 프로퍼티 래퍼를 사용. 
+
+```swift
+class UserSettings: ObservableObject {
+  @Published var score = 0
+}
+
+struct ContentView: View {
+  @ObservedObject var settings = UserSettings()
+  
+  var body: some View {
+    VStack {
+      Text("Your score is \(settings.score)")
+      Button (action : { self.settings.score + = 1}){
+        Text("increase the score")
+      }
+    }
+  }
+}
+```
 
 ## @EnvironmentObject ?
+### 모든 view가 shared할 수 있는 data
+
+* 반드시 enviromentObject(_ :)메소드를 호출하여 상위 뷰에서 모데 객체를 설정해야한다. SceneDelegate에서 설정 필요
+* 앱의 어느 곳에서나 접근 가능
+
+```swift 
+let content = ContentView().environmentObject(settings)
+
+struct UserSettings: ObservableObject {
+
+  @EnviromentObejct var settings: UserSettings
+  
+}
+
+struct ZeddView: View {
+
+  @Environment var settings: UserSettings
+  
+  var body: some View {
+    Text("\(settings.score)")
+  }
+}
+
+```
+
+
+
+
+
