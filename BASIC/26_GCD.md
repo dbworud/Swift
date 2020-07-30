@@ -5,13 +5,13 @@
 ## GCD의 DispatchQueue ?
 실제로 해야 할 task를 담아두면 선택된 스레드에서 실행을 해주는 역할
 
-앱 실행시, 시스템에서 기본적으로 **Main Queue** 와 **Global Queue**를 만들어줌
-* Main Queue : 메인 스레드(=UI 스레드)에서 사용되는 serial queue. 모든 UI처리는 메인 스레드에서 처리
-(Serial DispatchQueue : 등록된 작업을 한 번에 하나씩 차례대로 처리. 작업이 완료되면 순차적으로 다음 작업 실행)
+앱 실행시, 시스템에서 기본적으로 **Main Queue** 와 **Global Queue**를 만들어줌   
+* Main Queue : 메인 스레드(=UI 스레드)에서 사용되는 serial queue. 모든 UI처리는 메인 스레드에서 처리     
+(Serial DispatchQueue : 등록된 작업을 한 번에 하나씩 차례대로 처리. 작업이 완료되면 순차적으로 다음 작업 실행)   
 
-* Global Queue : 편의상 사용할 수 있게 만들어놓음. 처리우선을 위해 필요한 qos(Quality Of Service) 파라미터 제공
-(Concurrent DispatchQueue : 여러 작업들을 동시에 처리)
-qos 우선순위: userInteractive > userInitiated > default > utility > background > unspecified
+* Global Queue : 편의상 사용할 수 있게 만들어놓음. 처리우선을 위해 필요한 qos(Quality Of Service) 파라미터 제공     
+(Concurrent DispatchQueue : 여러 작업들을 동시에 처리)     
+qos 우선순위: userInteractive > userInitiated > default > utility > background > unspecified    
 
 ## DispatchQueue의 메소드
 
