@@ -65,6 +65,7 @@ struct ContentView: View {
 
 * 반드시 enviromentObject(_ :)메소드를 호출하여 상위 뷰에서 모데 객체를 설정해야한다. SceneDelegate에서 설정 필요
 * 앱의 어느 곳에서나 접근 가능
+* 실행방식: 해당 type의 object를 찾기위해 환경을 훑고 그것을 해당 프로퍼티에 attach함
 
 ```swift 
 let content = ContentView().environmentObject(settings)
@@ -85,6 +86,24 @@ struct ZeddView: View {
 }
 
 ```
+
+## @Environment ?
+### 이미 정의된 key들로 작업하기 위해 있는 것
+(@EnviromentObjects는 특정 환경에 값들을 주입시키는 역할)
+
+* Core data, 다크모드/라이트모드인지, 렌더링하는 화면의 크기가 몇인지, 더 고정된 프로퍼티를 읽는데 유용
+
+```swift
+@Environment(\.horizontalSizeClass) horizontalSizeClass
+@Environment(\.managedObjectContext) managedObjectContext
+```
+
+```swift
+@Environment(\.accessibilityReduceMotion) var reduceMotion
+@Environment(\.accessibilityReduceTransparency) var reduceTransparency
+@Environment(\.accessibilityEnabled) var accessibilityEnabled
+```
+해당 변수들은 같은 data type을 사용하고 있으며, boolean을 반환하기 때문에 어떤 key를 읽는지 명확히 해야한다.  
 
 
 
