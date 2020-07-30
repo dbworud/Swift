@@ -91,11 +91,40 @@ struct ZeddView: View {
 ### 이미 정의된 key들로 작업하기 위해 있는 것
 (@EnviromentObjects는 특정 환경에 값들을 주입시키는 역할)
 
-* Core data, 다크모드/라이트모드인지, 렌더링하는 화면의 크기가 몇인지, 더 고정된 프로퍼티를 읽는데 유용
+* Core data, 다크모드/라이트모드인지, 렌더링하는 화면의 크기가 몇인지, 더 고정된 프로퍼티를 읽는데 유용  
+* 해당 변수가 바뀌면 읽어들임
 
 ```swift
 @Environment(\.horizontalSizeClass) horizontalSizeClass
 @Environment(\.managedObjectContext) managedObjectContext
+```
+
+```swift
+struct ButtonView: View {
+  @Envrionment(\.sizeCategory) var sizeCategory
+
+  var body: some View {
+    Group {
+       if sizeCategory == .accessibilityExtraExtraExtraLarge {
+          VStack { buttons } 
+       else {
+            HStack { buttons }
+          }
+       }
+    }
+  }
+}
+
+struct ModalView: View {
+  @Environment(\.presentationMode) var presentation
+  
+  var body: some View {
+    Button("dismiss") {
+      self.presentation.value.dismiss()    
+    }
+  }
+}
+
 ```
 
 ```swift
