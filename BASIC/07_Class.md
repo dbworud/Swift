@@ -77,6 +77,10 @@ class B {
     var a = 10
 }
 
+class C : B {
+    var id = 5
+}
+
 var strA = A()
 var clsB = B()
 
@@ -88,9 +92,11 @@ clsB.a = 10 // 10>20. 20
 
 print("\(strAA.a) \(clsBB.a)")
 
------
+--------
 10 20
 
 ```
-
+ 
+struct는 주로 JSON 디코딩할 때 사용, 단순하게 복사하기 때문에 원래 값(rawValue)이 바뀔 위험이 없음   
+class는 다른 class를 상속받을 수 있음   
 
