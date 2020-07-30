@@ -65,3 +65,32 @@ let jina: Student = Student() // 불변이므로 프로터피 값 변경 불가
 jina.name = "jina"
 jina.selfIntroduce() // 저는 swift반 jina입니다 
 ```
+
+
+### Struct VS. Class
+```swift
+struct A {
+    var a = 10
+}
+
+class B {
+    var a = 10
+}
+
+var strA = A()
+var clsB = B()
+
+var strAA = strA // 값을 복사
+var clsBB = clsB // 값을 참조
+
+strA.a = 20 // 10>20. 10
+clsB.a = 10 // 10>20. 20
+
+print("\(strAA.a) \(clsBB.a)")
+
+-----
+10 20
+
+```
+
+
