@@ -100,3 +100,10 @@ print("\(strAA.a) \(clsBB.a)")
 struct는 주로 JSON 디코딩할 때 사용, 단순하게 복사하기 때문에 원래 값(rawValue)이 바뀔 위험이 없음   
 class는 다른 class를 상속받을 수 있음   
 
+### Rule
+* 모델 크기가 크지 않고 상속이 필요없다면 -> struct
+* JSON field와 1:1 mapping이 필요하다면 -> struct
+* 해당 모델을 serialize하여 전송하거나 파일로 저장한다면 -> class
+* 해당 모델이 obj-c에서도 사용되어야 한다면 -> class
+
+
