@@ -7,6 +7,7 @@
 * Empty: 어떤 데이터도 발행하지 않음. 주로 에러처리나 옵셔널값을 처리할 때 사용
 * Sequence: (1...10).publisher같이 데이터를 순차적으로 발행. 
 * ObservableObjectPublisher: ObservalbeObject를 준수하는 Publisher
+* AnyPublisher: Subscriber나 다른 Publisher에게 Publisher의 상세 타입을 노출시키고 싶지 않을 때 AnyPublisher로 래핑
 
 ### 2. Published Annotation
 PropertyWrapper를 통해 사용할 수 있음
