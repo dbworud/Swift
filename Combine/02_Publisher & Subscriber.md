@@ -27,7 +27,7 @@ subject를 이용하면 쉽게 리팩토링할 수 있음
 let subject = PassthroughSubject<String, Error>()
 
 subject.sink(receiveCompletion: { completion in
-// 에러가 발생하 경우에도 receiveCompletion이 호출됨
+// 에러가 발생하는 경우에도 receiveCompletion이 호출됨
   switch completion {
     case .failure: 
       print("Error가 발생하였습니다")
