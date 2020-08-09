@@ -37,4 +37,23 @@ func bindingWithWhere() {
 }
 ```
 
-#### 3-3. 다중바인딩, 
+#### 3-3. 다중바인딩, 함수호출
+let을 ','로 구분하여 바인딩하며 조건문에 함수를 넣을 수 있음
+
+```swift
+if let val1 = func1(), let val2 = func2() {
+  // code
+}
+```
+
+#### 3-4. 옵셔널 바인딩 체인
+바인딩 체인과 형변환을 동시에
+
+```swift
+if let val1 = func1(), let val2 = Float(val1) {
+  // code
+}
+```
+
+#### 3-5. 
+
