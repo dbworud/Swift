@@ -55,5 +55,31 @@ if let val1 = func1(), let val2 = Float(val1) {
 }
 ```
 
-#### 3-5. 
+#### 3-5. 옵셔널 바인딩과 조건 비교
 
+```swift
+if let val1 = func1(), condition == true {
+  // code
+}
+```
+
+### 4. nil 연산자 ??
+nil이면 ?? 이후의 값 사용
+
+```swift
+val selectedColor: String?
+val colorName = selectedColor ?? "Red"
+```
+
+### 5. 옵셔널 체인
+? 기호를 이용하는데, nil -> 더이상 진행하지 않고 nil 반환   
+nil이 아니면 -> 계속 진행    
+JSON 등에서 많이 사용
+
+```swift
+var optional: String? = "AB"
+let str = optional?.lowercased() // Optional("ab")
+
+var optional: String? = nil
+let str = optional?.lowercased() // nil
+```
