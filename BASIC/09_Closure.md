@@ -126,3 +126,90 @@ result = calculate(a: 10, b: 10, method: { (left: Int, right: Int) -> Int in
 result = calculate(a: 10, b: 10) {return $0 + $1 }
 
 ```
+
+### 탈출불가 클로저~~(@noescape)~~
+* noescape가 기본값(default)
+1. 클로저가 함수의 전달인자로 전달된다  
+2. 함수 내부에서 몇몇 작업들을 수행한다   
+3. 이제 함수 클로저를 실행한다   
+4. 함수 return시, 클로저가 메모리에서 삭제되어 메모리 관리가 수월해짐
+
+```swift
+func doSomething() {
+    // step 1
+    self.getSumOf(array: [16,756,442,6,23]) { (sum) in
+        print(sum)
+        // step 4. 함수 종료
+    }
+}
+
+func getSumOf(array:[Int], handler: ((Int)->Void)) {
+    // step 2
+    var sum: Int = 0
+    for value in array {
+        sum += value
+    }
+
+    // step 3
+    handler(sum)
+}
+```
+
+### 탈출 클로저 (@escaping)
+탈출불가 클로저와 달리, 함수가 종료된 후에도 클로저가 필요한 경우 = 클로저가 메모리에 남아있어야 함  
+@escaping을 표기하는 경우   
+1. 클로저 저장: 글로벌 변수에 클로저를 저장하여 함수가 종료된 후에도 사용하는 경우  
+2. 비동기 작업: Dispatch queue등을 사용하여 비동기 작업을 한다면, 클로저를 메모리에 계속 잡아두어 비동기 작업을 마무리하도록 해야 함  
+단, **탈출 클로저 내부에서 해당 타입의 프로퍼티나 메소드 등에 접근하려면 반드시 self 키워드를 사용해야 함!!**    
+
+1. 클로저가 함수의 전달인자로 전달된다  
+2. 함수 내부에서 몇몇 작업들을 수행한다  
+3. 저장 또느 비동기 작업을 위해 클로저 실행   
+4. 함수 리턴   
+
+<<클로저 저장>>
+```swift
+var complitionHandler: ((Int)->Void)?
+
+func getSumOf(array:[Int], handler: @escaping ((Int)->Void)) {
+    //step 2
+    var sum: Int = 0
+    for value in array {
+        sum += value
+    }
+    //step 3
+    self.complitionHandler = handler
+}
+
+func doSomething() {
+    //step 1
+    self.getSumOf(array: [16,756,442,6,23]) { (sum) in
+        print(sum)
+        //step 4. 함수 종료
+    }
+}
+```
+
+<<비동기 작업>>
+```swift
+func getSumOf(array:[Int], handler: @escaping ((Int)->Void)) {
+    //step 2
+    var sum: Int = 0
+    for value in array {
+        sum += value
+    }
+    //step 3. 비동기 작업
+    DispatchQueue.global().asyncAfter(deadline: .now() + 1.0){
+        handler(sum)
+    }
+}
+
+func doSomething() {
+    //step 1
+    self.getSumOf(array: [16,756,442,6,23]) { (sum) in
+        print(sum)
+        //step 4. 함수 종료
+    }
+}
+```
+
