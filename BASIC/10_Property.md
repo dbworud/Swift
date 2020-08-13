@@ -8,6 +8,71 @@
 * 인스턴스 프로퍼티(instance property)
 * 타입 프로퍼티(type property)
 
+### get, set
+getter/setter과 비슷. 다만 해당 프로퍼티에 직접 붙이는 방식이 특이
+```swift
+var myProperty: Int {
+  get {
+    return myProperty
+  }
+  set(newVal){
+    myProperty = newVal
+  }
+}
+
+// 위의 코드는 recursive하게 자기 자신의 get/set을 호출하게되므로 
+// 실제 값을 저장할 backing storage가 필요
+
+var _myProperty: Int // 실제로 값이 저장되는 외부변수
+var myProperty: Int {
+  get {
+    return _myProperty
+  }
+  set(newVal) {
+    _myProperty = newVal
+  }
+}
+```
+
+#### 활용
+* 프로퍼티에 할당된 값이 적절한지 검증하기 위해
+* 다른 프로퍼티에 의존적인 프로퍼티를 관리하기 위해
+* 프로퍼티를 private하게 관리하기 위해
+
+```swift
+class Company {
+  var _members: Int = 5
+  var memebers : Int {
+    get {
+      return _members
+    }
+    set(newVal) {
+      if(newVal < 1){
+        print("직원은 한 명보다 적을 수 없습니다") // 1. 검증
+      } else {
+        _members = newVal
+      }
+    }
+  }
+  var teamDinnerCost: Int {
+    return _members * 100000 // _members에 의존적인 프로퍼티
+  }
+}  
+```
+
+```swift
+private(set) var myProperty: Int = 10
+```
+myProperty -> **internal getter**과 **private setter**얻게 됨    
+즉, private setter : 해당 프로퍼티가 선언된 파일 내에서만 값을 수정, 외부 파일에서 수정 불가   
+internal getter : 같은 모듈 내에서는 값을 얻을 수 있음
+
+```swift
+public private(set) var myProperty: Int = 10
+```
+위와 같이 선언할 경우, 어디서든 값에 접근 가능. 단, public class로 선언해주어야 함 
+
+
 ```swift
 struct Student{
 
@@ -99,8 +164,9 @@ var sum: Int {
 print(sum) // 300 
 ```
 
-### 프로퍼티 감시자
+### willSet, didSet 프로퍼티 감시자
 프로퍼티 값이 변경될 때 감시하고 있다가 원하는 동작을 수행할 수 있게 해줌
+프로퍼티 값이 변경되기 직전, 직후를 감지
 
 ```swift
 struct Money {
@@ -110,7 +176,7 @@ struct Money {
     willSet(newRate) {
       print("환율이 \(currencyRate)에서 \(newRate)로 변경될 예정입니다")
     }
-    // 바뀌고 나서 호출
+    // 변경된 직후 호출
     didSet(oldRate) {
       print("환율이 \(oldRate)에서 \(currencyRate)로 변경되었습니다")
     }  
