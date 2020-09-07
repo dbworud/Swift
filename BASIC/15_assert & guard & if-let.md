@@ -77,3 +77,32 @@ someFunction(info: ["name": "mike"] // 나이가 없어 동작중지
 someFunction(info: ["name": "yagom", "age": 10] // yagom: 10
 
 ``` 
+
+
+### guard let vs if let
+
+```swift
+func printName(){
+  var name: String?
+  value = "Lena"
+  print(value) // Optional("Lena")
+  if let name = value {
+    print(name) // "Lena" 
+  } // if문 안에서만 name 변수 사용 가능!!!
+}
+
+func printName() {
+  var name: String?
+  value = "Lena"
+  print(value) // Optional("Lena")
+  guard let name = value else { return }
+  print(name) // "Lena"  
+}  // 메소드 내에서 지역변수처럼 사용 가능
+```
+* guard let은 'else'가 뒤에 필수로 붙어야 하며, 실행 결과가 false일 때 else구문이 실행됨   
+else 구문 : 상위 코드 블록을 종료하는 코드가 들어가야 함 ex. throw, return, break, continue  
+guard let 구문이 true이면 뒤에 코드를 계속 실행  
+guard let 구문 안에 ','(쉼표)를 통해 조건을 추가할 수 있으며, Bool로 반환되어야 하는 조건문  
+
+
+
