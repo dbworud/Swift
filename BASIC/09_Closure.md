@@ -179,7 +179,7 @@ func getSumOf(array:[Int], handler: @escaping ((Int)->Void)) {
         sum += value
     }
     //step 3
-    self.complitionHandler = handler
+    self.completionHandler = handler
 }
 
 func doSomething() {
