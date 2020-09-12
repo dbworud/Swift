@@ -17,5 +17,22 @@ API로 서버와의 데이터 교류. HTTP를 포함한 몇 가지 프로토콜 
 4. 해당 Task 실행
 5. Task완료 후, Completion handler가 실행됨   
 
+## URLSessoin의 Session
 
+1. default: 기본적인 session. 디스크 기반 캐싱 지원 (caching: 컴퓨터 과학에서 데이터나 값을 미리 복사해놓고 접근시간을 단축시킴)
+2. ephemeral: 어떠한 데이터도 저장하지 않는 세션
+3. background: 앱이 종료된 이후에 통신이 이루어지는 것을 지원하는 세션
+
+## URLSessoin의 Request
+
+: 서버로 요청을 보낼 때, 어떻게 데이터를 캐싱할 것인지, 어떤 HTTP메소드(get, post, put 등)을 사용할 것인지,
+ 어떤 내용을 전송할 것인지 설정
+
+## URLSessoin의 Task
+
+ : Session객체가 서버로 요청을 보낸 후, 응답을 받을 때 URL기반의 내용들을 받는(retrieve) 역할을 함. 3가지 종류의 task가 지원
+ 
+ 1. Data Task: 데이터 객체를 통해 데이터를 주고 받는 작업
+ 2. Download Task: 데이터 -> 파일 형태로 전환 후 다운로드하는 작업. 백그라운드 다운로드 지원
+ 3. Upload Task: 데이터 -> 파일 형태로 전환 후 업로드하는 작업
 
