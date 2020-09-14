@@ -1,6 +1,7 @@
 ## Combine?
 * 시간의 흐름에 따라 발생하는 이벤트를 처리하는 API, 발생한 이벤트를 어떻게 가공하고 소비할 것인지?
 * 선언형 프레임워크, 함수형 프로그래밍, 비동기 처리
+* Essential Framework that empowers SwiftUI
 
 ## 구성요소 
 
