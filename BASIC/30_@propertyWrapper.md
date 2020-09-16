@@ -97,4 +97,51 @@ s.$x // Someprojection Value
 s.$x.wrapper // WrapperWithProjection Value
 ```
 
+### propertyWrapper의 초기화 여러가지 방법
+
+```swift
+@propertyWrapper
+struct SomeWrapper {
+    var wrappedValue : Int
+    var someValue : Double
+    
+    init() {
+        self.wrappedValue = 100
+        self.someValue = 12.3
+    }
+    
+    init(wrappedValue : Int){
+        self.wrappedValue = wrappedValue
+        self.someValue = 45.6
+    }
+    
+    init(wrappedValue: Int, custom: Double){
+        self.wrappedValue = wrappedValue
+        self.someValue = custom
+    }
+}
+
+struct SomeStruct {
+    // init() 호출
+    @SomeWrapper var a: Int
+    
+    // init(wrappedValue:) 호출. wrappedValue = 10
+    @SomeWrapper var b = 10
+    
+    // init(wrappedValue:custome:)호출. wrappedValue = 30
+    @SomeWrapper(custom: 78.9) var c = 30
+    
+    @SomeWrapper(wrappedValue: 30, custom: 98.7) var d
+}
+```
+
+### propertyWrapper 합성
+propertyWrapper를 2개 이상 적용 가능. 교환법칙은 성립하지 않으며, 합성 시 각 propertyWrapper의 제한 조건을 만족해야 함
+```swift
+// DelayMutable<Copying<UIBeizerPath>>
+@DelayedMutable @Copying var path1: UIBeizerPath
+
+// Copying<DelayedMutable<UIBeizerPath>>
+@Copying @DelayedMutable var path2: UIBeizerPath
+```
 
