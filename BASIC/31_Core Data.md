@@ -1,11 +1,13 @@
 ## Core data ?
-Framework to Persist or cache data and support undo on a single device  
-1. To saves your application's permanent data for offline us  
+Framework to Persist or cache data and support undo on a single device, not Database!!
+넓은 의미로 앱의 모델 계층, 객체 그래프를 관리하는 framework
+1. To saves your application's __permanent__ data for offline us  
 2. To caches temporary data  
 3. To adds undo functionality to your app on a single device   
 
 Core Data’s Data Model editor에서 데이터의 타입과 관계를 정의할 수 있고 각각 클래스르 정의할 수 있음  
 그러면 Core data는 런타임 때 object 인스턴스를 관리함
+UserDefaults는 app setting과 같은 간단한 정보를 저장하기에 적합, Core data는 복잡하고 큰 user data를 저장하기에 적합
 
 ### 1. Persistance
 abstract the details of mapping your objects to store without administrating database directly 
