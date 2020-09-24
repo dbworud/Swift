@@ -25,3 +25,8 @@ include mechanisms for versioning your data model and migrating user data as you
 
 ### Why it's good ?
 Codable and UserDefaults, but it’s much more advanced than that: Core Data is capable of sorting and filtering of our data, and can work with much larger data – there’s effectively no limit to how much data it can store. Even better, Core Data implements all sorts of more advanced functionality for when you really need to lean on it: data validation, lazy loading of data, undo and redo, and much more.
+
+### It Requires and already done for us
+1. create what' called 'persistent container'(which is what loads and saves the actual data from device storage)
+2. inject that into SwiftUI environment so that all our views can access it
+우리는 core data에 어떤 것을 저장할지, 어떻게 다시 읽어들일지를 정하면 됨
