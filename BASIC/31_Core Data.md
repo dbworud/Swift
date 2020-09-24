@@ -30,3 +30,7 @@ Codable and UserDefaults, but it’s much more advanced than that: Core Data is 
 1. create what' called 'persistent container'(which is what loads and saves the actual data from device storage)
 2. inject that into SwiftUI environment so that all our views can access it   
 우리는 core data에 어떤 것을 저장할지, 어떻게 다시 읽어들일지를 정하면 됨
+
+Core data는 struct 나 class와 달리, 우리의 데이터 타입이 어떻게 생겼는지, 무엇을 포함하는지, 이들의 관계는 어떤지 미리!! 알고있어야함   
+"entities": data types, "attributes": properties in there   
+And then, Core data converts that into an actual database layout it can work with at runtime! 
