@@ -36,4 +36,6 @@ Core data는 struct 나 class와 달리, 우리의 데이터 타입이 어떻게
 And then, Core data converts that into an actual database layout it can work with at runtime! 
 
 ### @FetchRequest
-retrieve information from Core Data and we have to make sure that this fetch request stays up to date over time, so UI synchronized 
+retrieve information from Core Data and we have to make sure that this fetch request stays up to date over time, so UI synchronized   
+Requried two properties 1. the entity we want to query, 2. how we want the results to be sorted 
+
