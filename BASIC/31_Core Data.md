@@ -39,3 +39,7 @@ And then, Core data converts that into an actual database layout it can work wit
 retrieve information from Core Data and we have to make sure that this fetch request stays up to date over time, so UI synchronized   
 Requried two properties 1. the entity we want to query, 2. how we want the results to be sorted 
 
+### @Environment
+To add and save objects, we need access to the managed object context that it's in SwiftUI's environment.  
+we can ask it for the current managed object context, and assign it to a property for our use
+
