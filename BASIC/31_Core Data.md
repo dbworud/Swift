@@ -34,3 +34,6 @@ Codable and UserDefaults, but it’s much more advanced than that: Core Data is 
 Core data는 struct 나 class와 달리, 우리의 데이터 타입이 어떻게 생겼는지, 무엇을 포함하는지, 이들의 관계는 어떤지 미리!! 알고있어야함   
 "entities": data types, "attributes": properties in there   
 And then, Core data converts that into an actual database layout it can work with at runtime! 
+
+### @FetchRequest
+retrieve information from Core Data and we have to make sure that this fetch request stays up to date over time, so UI synchronized 
