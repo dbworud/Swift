@@ -45,3 +45,13 @@ Requried two properties 1. the entity we want to query, 2. how we want the resul
 To add and save objects, we need access to the managed object context that it's in SwiftUI's environment.  
 we can ask it for the current managed object context, and assign it to a property for our use
 
+
+### In-Memory 방식
+중앙집중적인 NSManagedObjectContext가 NSManagedObject의 인스턴스를 다루기 위해 NSManagedObject포인터에게 메세지를 보내는 방식
+- 처리속도를 위해 인메모리 형식 사용. 디스크에 영속적으로 저장될 필요 없이 임시 내용을 담는 객체가 필요한 경우, 데이터베이스에 비해 코어데이터가 훨씬 빠른속도로 객체를 생성/수정/조작이 가능.  
+- 메모리 상의 객체를 수정하는 것만 가능  
+- 코어데이터는 데이터들을 메모리에 로딩하는 과정 없이는 작업이 불가능하다  
+- 코어데이터는 데이터 로직을 다루지는 않는다. SQLite에서의 데이터제약인 unique key같은 기능이 Core data에서는 없다
+
+<img width="634" alt="DBvsCoreData" src="https://user-images.githubusercontent.com/59492694/94983757-d60c1180-0580-11eb-8138-f4babc88385a.png">
+
