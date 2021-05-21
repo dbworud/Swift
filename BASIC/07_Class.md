@@ -107,3 +107,75 @@ class는 다른 class를 상속받을 수 있음
 * 해당 모델이 obj-c에서도 사용되어야 한다면 -> class
 
 
+### 1. Designated Initializer(지정생성자)
+ - 클래스의 메인 생성자      
+ - 반드시 모든 프로퍼티 초기화      
+ - 만약 super-class로부터 상속을 받은 클래스라면 생성자의 실행이 완료되기 전에 super-class의 저정생성자를 호출해야 함       
+ 
+ 
+### 2. Convenience Intializer(편의생성자)
+ - 초기화 단계에서 미리 지정된 값을 사용해 최소한의 입력으로 초기화를 도와주는 initializer       
+ - 반드시 Designated Initializer(지정생성자) 호출되어야 함        
+ - 호출하는 생성자는 반드시 동일 계층에 있는 지정생성자 혹은 편의생성자여야 함       
+ - 동일 계층에 있는 편의생성자를 호출하더라도 이 편의생성자는 최종적으로 동일한 클래스 내에 있는 지정생성자를 호출해야 함       
+ 
+ #### 클래스의 생성자는 원칙적으로 상속이 불가능하나 다음 2가지 규칙에 의해 상속이 자동으로 이루어짐      
+ 1. sub-class의 모든 프로퍼티가 기본값을 초기화되어 있고, init를 구현하지 않았다면, super-class에 있는 모든 init이 상속된다       
+ 2. sub-class가 모든 initializer를 상속받았거나 오버라이딩 했다면, 모든 편의생성자 상속됨       
+ 
+ 그런데, class의 상속성 때문에 subClass에서 designated init에서 super의 convenience init을 호출할 경우 무한 루프에 빠질 수 있음
+
+```
+// Initializer Inheritance and Overriding
+class Food {
+    var name: String
+    init(name: String) {
+        self.name = name
+    }
+    
+    convenience init() {
+        self.init(name: "[UnNamed]")
+    }
+}
+
+let namedMeat = Food(name: "Bacon")
+let unNamedMeat = Food()
+
+class RecipeIngredient: Food {
+    var quantity: Int
+   
+    init(name: String, quantity: Int) {
+        self.quantity = quantity // 현재 계층 속성 초기화
+        super.init(name: name) // super-class의 생성자 호출 동시에 나머지 속성 초기화
+    }
+
+    override convenience init(name: String) {
+        self.init(name: name, quantity: 1)
+    }
+}
+
+class ShoppingListItem: RecipeIngredient {
+    var purchased = false
+    var description: String {
+        var output = "\(quantity) X \(name)"
+        output += purchased ? " O" : " X"
+        return output
+    }
+}
+
+var breakfastList = [
+    ShoppingListItem(),
+    ShoppingListItem(name: "Bacon"),
+    ShoppingListItem(name: "Eggs", quantity: 6)
+]
+
+breakfastList[0].name = "Orange Juice"
+breakfastList[0].purchased = true
+
+for item in breakfastList {
+    print(item.description)
+    // 1 X Orange Juice O
+    // 1 X Bacon X
+    // 6 X Eggs X
+}
+```
