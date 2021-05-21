@@ -1,5 +1,6 @@
-swift에서는 대부분 struct타입으로 이루어져 있음
-property와 method
+swift에서는 대부분 struct타입으로 이루어져 있음   
+property와 method    
+Value Type, 복사하기 때문에 인스턴스의 주소 다름      
 
 **struct 이름{  
   // 구현부  
@@ -68,3 +69,28 @@ let jina: Student = Student() // 불변이므로 프로터피 값 변경 불가
 jina.selfIntroduce() // 저는 swift반 unknonw입니다 
 
 ``` 
+
+### mutating 키워드
+ 
+```
+ struct Point {
+     var x = 0.0
+     var y = 0.0
+     
+     mutating func moveTo(x deltaX: Int, y deltaY: Int) {
+         x += deltaX
+         y += deltaY
+     }
+ }
+
+ var somePoint = Point(x: 1.0, y: 1.0)
+ somePoint.moveTo(x: 2.0, y: 3.0)
+ 
+``` 
+ 
+구조체 내부에서 데이터를 수정할 때 선언    
+원래, enum과 struct는 값 타입(Value Type)    
+값 타입의 프로퍼티는 해당 인스턴스 메소드 내에서 수정할 수 없으나, 특정 메소드 내에서 struct, enum의 프로퍼티를 수정해야 하는 경우 mutating을 사용하는 것   
+
+왜? mutating func를 통해 struct 전체가 복사됨을 명시 -> 인스턴스에 따라 주소값 달라짐   
+struct 전체가 복사되는 이유는 swift가 함수형 언어라서 불변성이 중요하기 때문 -> thread-safety 보장    
