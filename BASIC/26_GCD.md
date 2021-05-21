@@ -47,3 +47,18 @@ Serial/Concurrent와 async/syncs는 별개
 Serial/Concurrent는 한 번에 하나만 처리할지, 동시에 여러개를 처리할 지     
 sync/async는 처리가 끝날 때까지 기다리는지, 지시만 하고 넘어가는 지     
 
+### 메인 스레드에서 DispatchQueue.main.sync하면 안되는 이유?
+
+메인 스레드에서 sync를 호출한다면, 메인 스레드 뿐만 아니라 작업이 완료되기를 기다리는 queue까지 block  
+-> 작업이 절대 끝나지 않음 = deadlock.    
+즉, Sync 함수 특성상 main queue에 넣은 작업이 완료되기 전까지 메인 스레드는 blocking waiting 상태  
+그런데 이 작업은 메인 스레드에서 serial하게 실행되는 main queue에 들어가 있으므로 UI는 영영 업데이트 되지 않는다. 
+만약 작업이 실패하더라도 UI가 끊기는 일이 없도록 해야한다 
+
+즉, 메인 스레드는 async + serial로 처리됨  
+global 스레드는 concurrent    
+
+### 언제 Sync 사용?   
+-  작업이 끝나는 것을 기다려야 할 때
+-  함수나 메소드가 중복으로 불리지 않게 해야할 때 
+-  동기화 작업을 진행하는 도중 이 동기화 작업을 중복으로 시도하지 않기 위해    
